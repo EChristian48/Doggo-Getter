@@ -2,7 +2,7 @@ import * as React from 'react'
 
 const Footer: React.FC = () => {
   return (
-    <footer className='navbar fixed-bottom'>
+    <footer className='navbar fixed-bottom bg-light'>
       <div className='container justify-content-between'>
         <p className='my-0'>
           ❤️ <a href='https://dog.ceo/dog-api/'>Dog API</a>

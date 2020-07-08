@@ -14,15 +14,32 @@ class GetDog extends React.Component<{}, GetDogState> {
   state: GetDogState = {
     currentDogImage: '',
   }
-  onNoHandler = () => {}
+  onNoHandler = async () => {
+    // Reset the image
+    this.setState({
+      currentDogImage: '',
+    })
+
+    // Get a new image
+    const dogResult = await this.getDog()
+
+    // Set the image
+    this.setState({
+      currentDogImage: dogResult.message,
+    })
+  }
   onYesHandler = () => {}
 
-  async componentDidMount() {
+  async getDog() {
     const result = await fetch('https://dog.ceo/api/breeds/image/random')
-    const resultJSON: DogAPIResult = await result.json()
+    return result.json() as Promise<DogAPIResult>
+  }
 
+  async componentDidMount() {
+    // Get a random image
+    const dogResult = await this.getDog()
     this.setState({
-      currentDogImage: resultJSON.message,
+      currentDogImage: dogResult.message,
     })
   }
 

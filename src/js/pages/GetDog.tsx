@@ -30,6 +30,10 @@ class GetDog extends React.Component<{}, GetDogState> {
   }
   onYesHandler = () => {}
 
+  /**
+   * Get a random dog from the Dog API
+   * @return Promise<DogAPIResult>
+   */
   async getDog() {
     const result = await fetch('https://dog.ceo/api/breeds/image/random')
     return result.json() as Promise<DogAPIResult>

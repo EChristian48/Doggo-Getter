@@ -6,7 +6,7 @@ type DogCardProps = {
   modalId: string
 }
 
-const DogCard: React.FC<DogCardProps> = (props) => {
+const DogSelectionCard: React.FC<DogCardProps> = (props) => {
   let content: JSX.Element
   if (props.imageUrl) {
     content = (
@@ -51,4 +51,4 @@ const DogCard: React.FC<DogCardProps> = (props) => {
   )
 }
 
-export { DogCard }
+export { DogSelectionCard }

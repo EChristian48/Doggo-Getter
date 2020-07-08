@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as $ from 'jquery'
 
 // Custom Components
-import { DogCard } from '../components/DogSelectionCard'
+import { DogSelectionCard } from '../components/DogSelectionCard'
 import { DogModal } from '../components/DogModal'
 import { DogToast } from '../components/DogToast'
 
@@ -110,7 +110,7 @@ class GetDog extends React.Component<{}, GetDogState> {
           <div className='row justify-content-center'>
             <div className='col-lg-4 col-md-6 col-12'>
               {/* Dog image and buttons */}
-              <DogCard
+              <DogSelectionCard
                 imageUrl={this.state.currentDogImage}
                 onNoHandler={this.getNewDog}
                 modalId={DOG_MODAL_ID}

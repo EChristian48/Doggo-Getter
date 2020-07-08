@@ -1,9 +1,31 @@
 import * as React from 'react'
-import { DogCard } from '../components/DogCard/DogCard'
+import { DogCard } from '../components/DogCard'
 
-class GetDog extends React.Component {
+type GetDogState = {
+  currentDogImage: string
+}
+
+interface DogAPIResult {
+  message: string
+  status: string
+}
+
+class GetDog extends React.Component<{}, GetDogState> {
+  state: GetDogState = {
+    currentDogImage: '',
+  }
   onNoHandler = () => {}
   onYesHandler = () => {}
+
+  async componentDidMount() {
+    const result = await fetch('https://dog.ceo/api/breeds/image/random')
+    const resultJSON: DogAPIResult = await result.json()
+
+    this.setState({
+      currentDogImage: resultJSON.message,
+    })
+  }
+
   render() {
     return (
       <div className='container'>
@@ -13,7 +35,7 @@ class GetDog extends React.Component {
         <div className='row justify-content-center'>
           <div className='col-lg-4 col-md-6 col-12'>
             <DogCard
-              imageUrl='https://img-comment-fun.9cache.com/media/ag5e59g/aXP49Qo5_700w_0.jpg'
+              imageUrl={this.state.currentDogImage}
               onNoHandler={this.onNoHandler}
               onYesHandler={this.onYesHandler}
             />

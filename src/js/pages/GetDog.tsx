@@ -1,6 +1,16 @@
 import * as React from 'react'
+
+// jQuery and Bootstrap
+import * as $ from 'jquery'
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+
+// Custom Components
 import { DogCard } from '../components/DogCard'
 import { DogModal } from '../components/DogModal'
+
+// IDB
+// TODO: Should just use localStorage
+import { getDBInstance } from '../database'
 
 type GetDogState = {
   currentDogImage: string
@@ -11,26 +21,41 @@ interface DogAPIResult {
   status: string
 }
 
+const DOG_MODAL_ID = 'dogModal'
+
 class GetDog extends React.Component<{}, GetDogState> {
   state: GetDogState = {
     currentDogImage: '',
   }
+
   onNoHandler = async () => {
     // Reset the image
     this.setState({
       currentDogImage: '',
     })
-
     // Get a new image
     const dogResult = await this.getDog()
-
     // Set the image
     this.setState({
       currentDogImage: dogResult.message,
     })
   }
-  onSaveHandler = (name: string) => {
-    
+
+  onSaveHandler = async (name: string) => {
+    if (!name.match(/^[a-z ,.'-]+$/i)) {
+      return
+    }
+
+    const db = await getDBInstance()
+    // Add the entry to the database
+    // or "Doggobase" as I call it
+    db.put('Doggos', {
+      imageUrl: this.state.currentDogImage,
+      name: name,
+    })
+
+    // Close the modal
+    $(`#${DOG_MODAL_ID}`).modal('hide')
   }
 
   /**
@@ -51,9 +76,6 @@ class GetDog extends React.Component<{}, GetDogState> {
   }
 
   render() {
-    // Id for modal and the button trigger
-    const DOG_MODAL_ID = 'dogModal'
-
     return (
       <>
         {/* Save Modal */}

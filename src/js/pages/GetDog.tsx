@@ -21,15 +21,20 @@ interface DogAPIResult {
   status: string
 }
 
+// Constants
+// TODO: Move to another file
 const DOG_MODAL_ID = 'dogModal'
+const FAILED_TOAST_ID = 'failedToast'
+const SUCCESS_TOAST_ID = 'successToast'
 
 class GetDog extends React.Component<{}, GetDogState> {
   state: GetDogState = {
     currentDogImage: '',
   }
   failedToast: JQuery<HTMLElement>
+  successToast: JQuery<HTMLElement>
 
-  onNoHandler = async () => {
+  getNewDog = async () => {
     // Reset the image
     this.setState({
       currentDogImage: '',
@@ -49,6 +54,8 @@ class GetDog extends React.Component<{}, GetDogState> {
       return
     }
 
+    this.successToast.toast('show')
+
     const db = await getDBInstance()
     // Add the entry to the database
     // or "Doggobase" as I call it
@@ -58,6 +65,9 @@ class GetDog extends React.Component<{}, GetDogState> {
     })
     // Close the modal
     $(`#${DOG_MODAL_ID}`).modal('hide')
+
+    // The name says it
+    this.getNewDog()
   }
 
   /**
@@ -77,7 +87,8 @@ class GetDog extends React.Component<{}, GetDogState> {
     })
 
     // Register the toast
-    this.failedToast = $('.toast').toast({ delay: 2000 })
+    this.failedToast = $(`#${FAILED_TOAST_ID}`).toast({ delay: 1500 })
+    this.successToast = $(`#${SUCCESS_TOAST_ID}`).toast({ delay: 1500 })
   }
 
   render() {
@@ -85,10 +96,14 @@ class GetDog extends React.Component<{}, GetDogState> {
       <>
         {/* Save Modal */}
         <DogModal id={DOG_MODAL_ID} onSaveHandler={this.onSaveHandler}>
-          <DogToast />
+          <DogToast id={FAILED_TOAST_ID}>Sorry, the name looks weird.</DogToast>
         </DogModal>
 
         <div className='container'>
+          <div className='row justify-content-center'>
+            <DogToast id={SUCCESS_TOAST_ID}>Looking good, saved.</DogToast>
+          </div>
+
           <div className='row justify-content-center mb-2'>
             <h3>Want this?</h3>
           </div>
@@ -97,7 +112,7 @@ class GetDog extends React.Component<{}, GetDogState> {
               {/* Dog image and buttons */}
               <DogCard
                 imageUrl={this.state.currentDogImage}
-                onNoHandler={this.onNoHandler}
+                onNoHandler={this.getNewDog}
                 modalId={DOG_MODAL_ID}
               />
             </div>

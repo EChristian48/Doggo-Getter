@@ -1,6 +1,9 @@
 import * as React from 'react'
+import { DogCard } from '../components/DogCard/DogCard'
 
 class GetDog extends React.Component {
+  onNoHandler = () => {}
+  onYesHandler = () => {}
   render() {
     return (
       <div className='container'>
@@ -9,22 +12,11 @@ class GetDog extends React.Component {
         </div>
         <div className='row justify-content-center'>
           <div className='col-lg-4 col-md-6 col-12'>
-            <div className='card shadow'>
-              <img
-                className='card-img-top'
-                src='https://img-comment-fun.9cache.com/media/ag5e59g/aXP49Qo5_700w_0.jpg'
-                alt='Derp Husky'
-              />
-              <div className='card-body row'>
-                <div className='col-6'>
-                  <button className='btn btn-danger btn-block'>no.</button>
-                </div>
-
-                <div className='col-6'>
-                  <button className='btn btn-success btn-block'>YES!!!</button>
-                </div>
-              </div>
-            </div>
+            <DogCard
+              imageUrl='https://img-comment-fun.9cache.com/media/ag5e59g/aXP49Qo5_700w_0.jpg'
+              onNoHandler={this.onNoHandler}
+              onYesHandler={this.onYesHandler}
+            />
           </div>
         </div>
       </div>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "fir-sites-9b041"
+  },
+  "targets": {
+    "fir-sites-9b041": {
+      "hosting": {
+        "sanbercode": [
+          "sanbercode-react"
+        ]
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar/Navbar'
 import { NavItem } from './components/Navbar/NavItem'
 import { Home } from './pages/Home'
 import { Footer } from './components/Footer'
+import { GetDog } from './pages/GetDog'
 
 class App extends React.Component {
   render() {
@@ -24,7 +25,7 @@ class App extends React.Component {
           </Route>
 
           <Route path='/get'>
-            <h1>Get</h1>
+            <GetDog />
           </Route>
 
           <Route path='/saved'>

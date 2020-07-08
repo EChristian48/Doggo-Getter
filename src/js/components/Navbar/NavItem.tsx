@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 
 type NavItemProps = {
   href: string
@@ -7,9 +8,9 @@ type NavItemProps = {
 const NavItem: React.FC<NavItemProps> = (props) => {
   return (
     <li className='nav-item'>
-      <a className='nav-link' href={props.href}>
+      <Link className='nav-link' to={props.href}>
         {props.children}
-      </a>
+      </Link>
     </li>
   )
 }

@@ -5,9 +5,10 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 // Custom Components
 import { Navbar } from './components/Navbar/Navbar'
 import { NavItem } from './components/Navbar/NavItem'
-import { Home } from './pages/Home'
 import { Footer } from './components/Footer'
+import { Home } from './pages/Home'
 import { GetDog } from './pages/GetDog'
+import { SavedDogs } from './pages/SavedDogs'
 
 class App extends React.Component {
   render() {
@@ -29,7 +30,7 @@ class App extends React.Component {
           </Route>
 
           <Route path='/saved'>
-            <h1>Saved</h1>
+            <SavedDogs />
           </Route>
         </Switch>
 

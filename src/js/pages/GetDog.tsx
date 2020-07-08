@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as $ from 'jquery'
 
 // Custom Components
-import { DogCard } from '../components/DogCard'
+import { DogCard } from '../components/DogSelectionCard'
 import { DogModal } from '../components/DogModal'
 import { DogToast } from '../components/DogToast'
 

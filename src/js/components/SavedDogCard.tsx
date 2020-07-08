@@ -1,17 +1,35 @@
 import * as React from 'react'
 
-const SavedDogCard: React.FC = () => {
+import { DoggoEntry, getDBInstance } from '../database'
+
+type SavedDogCard = {
+  dog: DoggoEntry
+}
+
+const SavedDogCard: React.FC<SavedDogCard> = (props) => {
+  const deleteMe = async (imageUrl: string) => {
+    const db = await getDBInstance()
+    await db.delete('Doggos', imageUrl)
+
+    location.reload()
+  }
+
   return (
-    <div className='col-12 col-md-6 col-lg-4'>
+    <div className='col-12 col-md-6 col-lg-4 my-2'>
       <div className='card'>
         <img
-          src='https://upload.wikimedia.org/wikipedia/commons/0/03/Vulpes_vulpes_laying_in_snow.jpg'
-          alt='Fox'
+          src={props.dog.imageUrl}
+          alt={props.dog.name}
           className='card-img-top'
         />
         <div className='card-body'>
-          <h5 className='card-title'>Fox go Floof</h5>
-          <button className='btn btn-danger'>Delete</button>
+          <h5 className='card-title'>{props.dog.name}</h5>
+          <button
+            className='btn btn-danger'
+            onClick={() => deleteMe(props.dog.imageUrl)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

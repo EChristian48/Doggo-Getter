@@ -7,14 +7,26 @@ type DogCardProps = {
 }
 
 const DogCard: React.FC<DogCardProps> = (props) => {
-  return (
-    <div className='card shadow'>
+  let content: JSX.Element
+  if (props.imageUrl) {
+    content = (
       <img
         className='card-img-top'
         src={props.imageUrl}
         alt='Your doggo candidate.'
       />
+    )
+  } else {
+    content = (
+      <div className='row justify-content-center my-4'>
+        <div className='spinner-border'></div>
+      </div>
+    )
+  }
 
+  return (
+    <div className='card shadow'>
+      {content}
       <div className='card-body row'>
         <div className='col-6'>
           <button

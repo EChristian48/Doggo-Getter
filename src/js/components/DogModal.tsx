@@ -2,7 +2,7 @@ import * as React from 'react'
 
 type DogModalProps = {
   id: string
-  onSaveHandler: () => void
+  onSaveHandler: (name: string) => void
 }
 
 type DogModalState = {
@@ -70,7 +70,7 @@ class DogModal extends React.Component<DogModalProps, DogModalState> {
               {/* Save Button */}
               <button
                 className='btn btn-primary'
-                onClick={this.props.onSaveHandler}
+                onClick={() => this.props.onSaveHandler(this.state.name)}
               >
                 yes pls
               </button>

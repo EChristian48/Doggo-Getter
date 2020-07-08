@@ -2,6 +2,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.js'
 
+// Custom CSS
+import '../css/style.css'
 
 // React
 import * as React from 'react'

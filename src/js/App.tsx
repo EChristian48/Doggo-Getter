@@ -5,7 +5,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 // Custom Components
 import { Navbar } from './components/Navbar/Navbar'
 import { NavItem } from './components/Navbar/NavItem'
-import { Jumbotron } from './components/Jumbotron'
+import { Home } from './pages/Home'
 
 class App extends React.Component {
   render() {
@@ -19,15 +19,15 @@ class App extends React.Component {
 
         <Switch>
           <Route path='/home'>
-            <Jumbotron />
+            <Home />
           </Route>
 
           <Route path='/get'>
-            <Jumbotron />
+            <h1>Get</h1>
           </Route>
 
           <Route path='/saved'>
-            <Jumbotron />
+            <h1>Saved</h1>
           </Route>
         </Switch>
       </HashRouter>

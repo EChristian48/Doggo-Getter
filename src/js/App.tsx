@@ -6,6 +6,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 import { Navbar } from './components/Navbar/Navbar'
 import { NavItem } from './components/Navbar/NavItem'
 import { Home } from './pages/Home'
+import { Footer } from './components/Footer'
 
 class App extends React.Component {
   render() {
@@ -30,6 +31,8 @@ class App extends React.Component {
             <h1>Saved</h1>
           </Route>
         </Switch>
+
+        <Footer />
       </HashRouter>
     )
   }

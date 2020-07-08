@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 // Custom Components
 import { Jumbotron } from '../components/Jumbotron'
-import { Footer } from '../components/Footer'
 
 const Home: React.FC = () => {
   return (
@@ -18,8 +17,6 @@ const Home: React.FC = () => {
           </Link>
         </div>
       </div>
-
-      <Footer />
     </>
   )
 }

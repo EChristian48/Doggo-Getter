@@ -3,7 +3,7 @@ import * as React from 'react'
 const Navbar: React.FC = (props) => {
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-transparent container'>
-      <a className='navbar-brand' href='#'>
+      <a className='navbar-brand' href='/#/home'>
         <img
           src='https://upload.wikimedia.org/wikipedia/en/6/63/Feels_good_man.jpg'
           width={50}

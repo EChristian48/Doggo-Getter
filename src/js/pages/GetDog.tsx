@@ -29,7 +29,9 @@ class GetDog extends React.Component<{}, GetDogState> {
       currentDogImage: dogResult.message,
     })
   }
-  onSaveHandler = () => {}
+  onSaveHandler = (name: string) => {
+    
+  }
 
   /**
    * Get a random dog from the Dog API

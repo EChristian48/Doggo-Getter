@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-type DogCardProps = {
+type DogSelectionCardProps = {
   imageUrl: string
   onNoHandler: () => void
   modalId: string
 }
 
-const DogSelectionCard: React.FC<DogCardProps> = (props) => {
+const DogSelectionCard: React.FC<DogSelectionCardProps> = (props) => {
   let content: JSX.Element
   if (props.imageUrl) {
     content = (

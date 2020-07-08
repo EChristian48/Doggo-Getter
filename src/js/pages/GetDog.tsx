@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-// jQuery and Bootstrap
+// jQuery
 import * as $ from 'jquery'
-import 'bootstrap/dist/js/bootstrap.bundle.js'
 
 // Custom Components
 import { DogCard } from '../components/DogCard'
 import { DogModal } from '../components/DogModal'
+import { DogToast } from '../components/DogToast'
 
 // IDB
 // TODO: Should just use localStorage
@@ -27,6 +27,7 @@ class GetDog extends React.Component<{}, GetDogState> {
   state: GetDogState = {
     currentDogImage: '',
   }
+  failedToast: JQuery<HTMLElement>
 
   onNoHandler = async () => {
     // Reset the image
@@ -43,6 +44,8 @@ class GetDog extends React.Component<{}, GetDogState> {
 
   onSaveHandler = async (name: string) => {
     if (!name.match(/^[a-z ,.'-]+$/i)) {
+      // Show toast and return
+      this.failedToast.toast('show')
       return
     }
 
@@ -53,14 +56,13 @@ class GetDog extends React.Component<{}, GetDogState> {
       imageUrl: this.state.currentDogImage,
       name: name,
     })
-
     // Close the modal
     $(`#${DOG_MODAL_ID}`).modal('hide')
   }
 
   /**
    * Get a random dog from the Dog API
-   * @return Promise<DogAPIResult>
+   * @return DogAPIResult
    */
   async getDog() {
     const result = await fetch('https://dog.ceo/api/breeds/image/random')
@@ -73,13 +75,18 @@ class GetDog extends React.Component<{}, GetDogState> {
     this.setState({
       currentDogImage: dogResult.message,
     })
+
+    // Register the toast
+    this.failedToast = $('.toast').toast({ delay: 2000 })
   }
 
   render() {
     return (
       <>
         {/* Save Modal */}
-        <DogModal id={DOG_MODAL_ID} onSaveHandler={this.onSaveHandler} />
+        <DogModal id={DOG_MODAL_ID} onSaveHandler={this.onSaveHandler}>
+          <DogToast />
+        </DogModal>
 
         <div className='container'>
           <div className='row justify-content-center mb-2'>

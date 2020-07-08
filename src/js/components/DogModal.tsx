@@ -77,6 +77,10 @@ class DogModal extends React.Component<DogModalProps, DogModalState> {
             </div>
           </div>
         </div>
+
+        <div className='d-flex justify-content-center'>
+          {this.props.children}
+        </div>
       </div>
     )
   }

@@ -3,7 +3,7 @@ import * as React from 'react'
 type DogCardProps = {
   imageUrl: string
   onNoHandler: () => void
-  onYesHandler: () => void
+  modalId: string
 }
 
 const DogCard: React.FC<DogCardProps> = (props) => {
@@ -40,7 +40,8 @@ const DogCard: React.FC<DogCardProps> = (props) => {
         <div className='col-6'>
           <button
             className='btn btn-success btn-block'
-            onClick={props.onYesHandler}
+            data-toggle='modal'
+            data-target={`#${props.modalId}`}
           >
             YES!!!
           </button>
